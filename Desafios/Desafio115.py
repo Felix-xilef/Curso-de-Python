@@ -1,40 +1,32 @@
 from auxiliar import color
-from Desafio115Arquivo import lerArquivo, inserirEmArquivo
+from Desafio115Pacote.Arquivo import lerArquivo, inserirEmArquivo
+from Desafio115Pacote.Menu import menu, cabecalho, erro
 
 # main
-linha = f"{color('amarelo')}{'-'*50}{color()}"
-menu = f"""
-\t{linha}{color('azul')}
-\t{'Menu Principal':^50}
-\t{linha}
-\t  {color('amarelo')}1{color('verde')} -{color('azul')} Ver pessoas cadastradas
-\t  {color('amarelo')}2{color('verde')} -{color('azul')} Cadastrar nova Pessoa
-\t  {color('amarelo')}3{color('verde')} -{color('azul')} Sair do Sistema
-\t{linha}{color('azul')}
-\t  Digite uma opção: {color('verde')}"""
-
 while True:
     try:
-        op = int(input(menu))
-        print(color(), end='')
+        mensagem = menu('Menu Principal', 'Digite uma opção: ', 'Ver pessoas cadastradas', 'Cadastrar nova Pessoa', 'Sair do Sistema')
+        op = int(input(mensagem))
     except:
-        print(f"\t{color('vermelho')}ERRO: Digite uma opção válida!{color()}")
+        print(erro('ERRO: Digite uma opção válida!'))
     else:
         if op == 1:
-            print(f"\n\t{linha}\n\t{color('azul')}{'Pessoas Cadastradas':^50}\n\t{linha}", end='')
+            print(cabecalho('Pessoas Cadastradas'))
             lerArquivo('Desafio115Cadastro.txt')
         elif op == 2:
-            print(f"\n\t{linha}\n\t{color('azul')}{'Novo Cadastro':^50}\n\t{linha}{color('azul')}")
-            nome = str(input(f'\t  Nome:{color()}'))
+            mensagem = cabecalho('Novo Cadastro') + f"\n\t{color('azul')}  Nome: {color()}"
+            nome = input(mensagem)
             while True:
                 try:
-                    idade = int(input(f"\t{color('azul')}  Idade:{color()} "))
+                    mensagem = f"\t{color('azul')}  Idade: {color()}"
+                    idade = int(input(mensagem))
                 except:
-                    print(f"\t{color('vermelho')}ERRO: Digite uma idade válida!{color()}")
+                    print(erro('ERRO: Digite uma idade válida!'))
                 else:
                     break
             inserirEmArquivo('Desafio115Cadastro.txt', nome=nome, idade=idade)
         elif op == 3:
+            print(color(), end='')
             break
         else:
-            print(f"\t{color('vermelho')}ERRO: Digite uma opção válida!{color()}")
+            print(erro('ERRO: Digite uma opção válida!'))
