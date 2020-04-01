@@ -28,3 +28,30 @@ def receberFixo(msg, opcoes):
         else:
             break
     return resp
+
+def color(font=''):
+    """
+        -> Fornece o código ANSI para a cor de texto desejada, não forneça entrada para a cor padrão
+        :param font:nome da cor desejada opções - preto, vermelho, verde, amarelo, azul, magenta, cyan e cinza claro
+        :return:código ANSI para texto na cor escolhida
+    """
+    font.lower()
+    cor = '\033['
+    if font == 'preto':
+        cor += '30'
+    elif font == 'vermelho':
+        cor += '31'
+    elif font == 'verde':
+        cor += '32'
+    elif font == 'amarelo':
+        cor += '33'
+    elif font == 'azul':
+        cor += '34'
+    elif font == 'magenta':
+        cor += '35'
+    elif font == 'cyan':
+        cor += '36'
+    elif font == 'cinza claro':
+        cor += '37'
+    cor += 'm'
+    return cor

@@ -1,4 +1,4 @@
-from auxiliar import receberInt, receberSN
+from auxiliar import receberInt, receberFixo
 
 jogadores = list() # [dict(jogador), dict(jogador), ...]
 jogador = dict() # {'nome': nome, 'total de gols': total, 'aproveitamento': list(aproveitamento)}
@@ -14,7 +14,7 @@ while True:
     jogador['aproveitamento'] = aproveitamento[:]
     aproveitamento.clear()
     jogadores.append(jogador.copy())
-    if receberSN() == 'n':
+    if receberFixo('Deseja continuar? (s / n): ', 'sn') == 'n':
         break
 
 while True:
